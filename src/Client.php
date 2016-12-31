@@ -17,4 +17,9 @@ class Client
     {
         return $this->driver->getDriver();
     }
+
+    public function send($msg)
+    {
+        return $this->driver->sendRequest($msg);
+    }
 }

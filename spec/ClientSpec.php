@@ -24,4 +24,14 @@ class ClientSpec extends ObjectBehavior
         $driver->getDriver()->willReturn('Test');
         $this->getDriver()->shouldReturn('Test');
     }
+
+    function it_sends_a_message(Driver $driver)
+    {
+        $msg = [
+            'to' => '+44 01234 567890',
+            'content' => 'Just testing'
+        ];
+        $driver->sendRequest($msg)->willReturn(true);
+        $this->send($msg)->shouldReturn(true);
+    }
 }
