@@ -18,4 +18,10 @@ class ClientSpec extends ObjectBehavior
     {
         $this->shouldHaveType(Client::class);
     }
+
+    function it_returns_the_driver_name(Driver $driver)
+    {
+        $driver->getDriver()->willReturn('Test');
+        $this->getDriver()->shouldReturn('Test');
+    }
 }

@@ -6,8 +6,15 @@ use Matthewbdaly\SMS\Contracts\Driver;
 
 class Client
 {
+    private $driver;
+
     public function __construct(Driver $driver)
     {
-        // TODO: write logic here
+        $this->driver = $driver;
+    }
+
+    public function getDriver()
+    {
+        return $this->driver->getDriver();
     }
 }
