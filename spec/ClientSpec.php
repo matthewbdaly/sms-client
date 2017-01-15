@@ -3,33 +3,32 @@
 namespace spec\Matthewbdaly\SMS;
 
 use Matthewbdaly\SMS\Client;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Matthewbdaly\SMS\Contracts\Driver;
+use PhpSpec\ObjectBehavior;
 
 class ClientSpec extends ObjectBehavior
 {
-    function let(Driver $driver)
+    public function let(Driver $driver)
     {
         $this->beConstructedWith($driver);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(Client::class);
     }
 
-    function it_returns_the_driver_name(Driver $driver)
+    public function it_returns_the_driver_name(Driver $driver)
     {
         $driver->getDriver()->willReturn('Test');
         $this->getDriver()->shouldReturn('Test');
     }
 
-    function it_sends_a_message(Driver $driver)
+    public function it_sends_a_message(Driver $driver)
     {
         $msg = [
-            'to' => '+44 01234 567890',
-            'content' => 'Just testing'
+            'to'      => '+44 01234 567890',
+            'content' => 'Just testing',
         ];
         $driver->sendRequest($msg)->willReturn(true);
         $this->send($msg)->shouldReturn(true);
