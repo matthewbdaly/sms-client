@@ -25,9 +25,11 @@ class NullDriver implements Driver
 
     public function getEndpoint()
     {
+        return null;
     }
 
     public function sendRequest(array $message)
     {
+        return true;
     }
 }
