@@ -20,6 +20,7 @@ class NullDriver implements Driver
 
     public function getDriver()
     {
+        return 'Null';
     }
 
     public function getEndpoint()

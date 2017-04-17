@@ -24,4 +24,9 @@ class NullDriverSpec extends ObjectBehavior
     {
         $this->shouldImplement('Matthewbdaly\SMS\Contracts\Driver');
     }
+
+    function it_returns_the_driver_name()
+    {
+        $this->getDriver()->shouldReturn('Null');
+    }
 }
