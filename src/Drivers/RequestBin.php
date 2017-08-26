@@ -14,6 +14,8 @@ class RequestBin implements Driver
 
     private $path;
 
+    private $endpoint = 'https://requestb.in/';
+
     public function __construct(GuzzleClient $client, GuzzleResponse $response, array $config)
     {
         $this->client = $client;
@@ -28,7 +30,7 @@ class RequestBin implements Driver
 
     public function getEndpoint()
     {
-        return 'https://requestb.in/'.$this->path;
+        return $this->endpoint.$this->path;
     }
 
     public function sendRequest(array $message)
