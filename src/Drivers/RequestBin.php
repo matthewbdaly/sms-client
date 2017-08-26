@@ -20,7 +20,7 @@ class RequestBin implements Driver
 
     public function getDriver()
     {
-        // TODO: write logic here
+        return 'RequestBin';
     }
 
     public function getEndpoint()
