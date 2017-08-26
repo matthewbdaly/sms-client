@@ -12,7 +12,10 @@ class RequestBinSpec extends ObjectBehavior
 {
     function let(GuzzleClient $client, GuzzleResponse $response)
     {
-        $this->beConstructedWith($client, $response);
+        $config = [
+            'path' => 'blah'
+        ];
+        $this->beConstructedWith($client, $response, $config);
     }
 
     function it_is_initializable()
@@ -32,7 +35,7 @@ class RequestBinSpec extends ObjectBehavior
 
     function it_returns_the_driver_endpoint()
     {
-        $this->getEndpoint()->shouldReturn('https://requestb.in/');
+        $this->getEndpoint()->shouldReturn('https://requestb.in/blah');
     }
 
     function it_sends_the_request()
