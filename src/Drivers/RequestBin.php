@@ -28,7 +28,7 @@ class RequestBin implements Driver
         // TODO: write logic here
     }
 
-    public function sendRequest($argument1)
+    public function sendRequest(array $message)
     {
         // TODO: write logic here
     }
