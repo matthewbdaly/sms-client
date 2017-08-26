@@ -32,7 +32,7 @@ class RequestBinSpec extends ObjectBehavior
 
     function it_returns_the_driver_endpoint()
     {
-        $this->getEndpoint()->shouldReturn(null);
+        $this->getEndpoint()->shouldReturn('https://requestb.in/');
     }
 
     function it_sends_the_request()

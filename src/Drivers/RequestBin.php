@@ -25,7 +25,7 @@ class RequestBin implements Driver
 
     public function getEndpoint()
     {
-        // TODO: write logic here
+        return 'https://requestb.in/';
     }
 
     public function sendRequest(array $message)
