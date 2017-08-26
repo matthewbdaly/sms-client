@@ -5,6 +5,10 @@ namespace Matthewbdaly\SMS\Drivers;
 use Matthewbdaly\SMS\Contracts\Driver;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\RequestException;
 
 class RequestBin implements Driver
 {
