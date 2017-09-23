@@ -17,8 +17,9 @@ In addition, it also has the following drivers for test purposes:
 
 * RequestBin
 * Null
+* Log
 
-The former sends the POST request to the specified RequestBin path for debugging, while the later does nothing.
+The RequestBin sends the POST request to the specified RequestBin path for debugging. The Null driver does nothing, while the Log driver accepts a PSR3 logger and uses it to log the request.
 
 Example Usage
 -----
@@ -40,6 +41,23 @@ $msg = [
     'content' => 'Just testing',
 ];
 $client->send($msg);
+```
+
+**Log**
+
+```php
+use Matthewbdaly\SMS\Drivers\Log;
+use Matthewbdaly\SMS\Client;
+use Psr\Log\LoggerInterface;
+
+$driver = new Log($logger); // $logger should be an implementation of Psr\Log\LoggerInterface
+$client = new Client($driver);
+$msg = [
+    'to'      => '+44 01234 567890',
+    'content' => 'Just testing',
+];
+$client->send($msg);
+
 ```
 
 **RequestBin**
