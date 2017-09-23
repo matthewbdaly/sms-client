@@ -11,6 +11,14 @@ use PhpSpec\ObjectBehavior;
 
 class ClockworkSpec extends ObjectBehavior
 {
+    public function let(GuzzleClient $client, GuzzleResponse $response)
+    {
+        $config = [
+            'api_key' => 'blah',
+        ];
+        $this->beConstructedWith($client, $response, $config);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType(Clockwork::class);
