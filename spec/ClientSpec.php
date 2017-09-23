@@ -18,6 +18,11 @@ class ClientSpec extends ObjectBehavior
         $this->shouldHaveType(Client::class);
     }
 
+    public function it_implements_interface()
+    {
+        $this->shouldImplement('Matthewbdaly\SMS\Contracts\Client');
+    }
+
     public function it_returns_the_driver_name(Driver $driver)
     {
         $driver->getDriver()->willReturn('Test');

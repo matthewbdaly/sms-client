@@ -2,12 +2,13 @@
 
 namespace Matthewbdaly\SMS;
 
+use Matthewbdaly\SMS\Contracts\Client as ClientContract;
 use Matthewbdaly\SMS\Contracts\Driver;
 
 /**
  * SMS client.
  */
-class Client
+class Client implements ClientContract
 {
     /**
      * Driver to use.
