@@ -19,7 +19,7 @@ class ClockworkSpec extends ObjectBehavior
         $this->beConstructedWith($client, $response, $config);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(Clockwork::class);
     }
