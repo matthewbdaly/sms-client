@@ -10,18 +10,54 @@ use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Matthewbdaly\SMS\Contracts\Driver;
 
+/**
+ * Driver for Nextmo
+ */
 class Nexmo implements Driver
 {
+    /**
+     * Guzzle client
+     *
+     * @var $client
+     */
     protected $client;
 
+    /**
+     * Guzzle response
+     *
+     * @var $response
+     */
     protected $response;
 
+    /**
+     * Endpoint
+     *
+     * @var $endpoint
+     */
     private $endpoint = 'https://rest.nexmo.com/sms/json';
 
+    /**
+     * API Key
+     *
+     * @var $apiKey
+     */
     private $apiKey;
 
+    /**
+     * API Secret
+     *
+     * @var $apiSecret
+     */
     private $apiSecret;
 
+    /**
+     * Constructor
+     *
+     * @param GuzzleClient   $client   The Guzzle Client instance.
+     * @param GuzzleResponse $response The Guzzle response instance.
+     * @param array          $config   The configuration array.
+     * @return void
+     */
     public function __construct(GuzzleClient $client, GuzzleResponse $response, array $config)
     {
         $this->client = $client;
@@ -30,16 +66,36 @@ class Nexmo implements Driver
         $this->apiSecret = $config['api_secret'];
     }
 
+    /**
+     * Get driver name
+     *
+     * @return string
+     */
     public function getDriver()
     {
         return 'Nexmo';
     }
 
+    /**
+     * Get endpoint URL
+     *
+     * @return string
+     */
     public function getEndpoint()
     {
         return $this->endpoint;
     }
 
+    /**
+     * Send the SMS
+     *
+     * @param array $message An array containing the message.
+     * @return boolean
+     * @throws \Matthewbdaly\SMS\Exceptions\ClientException Client exception.
+     * @throws \Matthewbdaly\SMS\Exceptions\ServerException Server exception.
+     * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
+     * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
+     */
     public function sendRequest(array $message): bool
     {
         try {
