@@ -31,7 +31,7 @@ class NullDriverSpec extends ObjectBehavior
 
     public function it_returns_the_driver_endpoint()
     {
-        $this->getEndpoint()->shouldReturn(null);
+        $this->getEndpoint()->shouldReturn('');
     }
 
     public function it_sends_the_request()
