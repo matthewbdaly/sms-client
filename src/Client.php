@@ -13,12 +13,12 @@ class Client
         $this->driver = $driver;
     }
 
-    public function getDriver()
+    public function getDriver(): string
     {
         return $this->driver->getDriver();
     }
 
-    public function send($msg)
+    public function send($msg): bool
     {
         return $this->driver->sendRequest($msg);
     }

@@ -18,7 +18,7 @@ class NullDriver implements Driver
         $this->response = $response;
     }
 
-    public function getDriver()
+    public function getDriver(): string
     {
         return 'Null';
     }
@@ -28,7 +28,7 @@ class NullDriver implements Driver
         return null;
     }
 
-    public function sendRequest(array $message)
+    public function sendRequest(array $message): bool
     {
         return true;
     }
