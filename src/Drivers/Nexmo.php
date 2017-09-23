@@ -47,7 +47,7 @@ class Nexmo implements Driver
             $message['api_secret'] = $this->apiSecret;
             $message['text'] = $message['content'];
             unset($message['content']);
-            $response = $this->client->request('POST', $this->getEndpoint(), $message);
+            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($message));
         } catch (ClientException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ClientException();
         } catch (ServerException $e) {
