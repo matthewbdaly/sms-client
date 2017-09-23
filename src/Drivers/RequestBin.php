@@ -27,17 +27,17 @@ class RequestBin implements Driver
         $this->path = $config['path'];
     }
 
-    public function getDriver()
+    public function getDriver(): string
     {
         return 'RequestBin';
     }
 
-    public function getEndpoint()
+    public function getEndpoint(): string
     {
         return $this->endpoint.$this->path;
     }
 
-    public function sendRequest(array $message)
+    public function sendRequest(array $message): bool
     {
         try {
             $response = $this->client->request('POST', $this->getEndpoint(), $message);
