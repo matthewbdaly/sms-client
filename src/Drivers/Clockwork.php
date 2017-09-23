@@ -63,7 +63,7 @@ class Clockwork implements Driver
      *
      * @return string
      */
-    public function getDriver()
+    public function getDriver(): string
     {
         return 'Clockwork';
     }
@@ -73,7 +73,7 @@ class Clockwork implements Driver
      *
      * @return string
      */
-    public function getEndpoint()
+    public function getEndpoint(): string
     {
         return $this->endpoint;
     }

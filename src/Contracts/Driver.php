@@ -9,14 +9,14 @@ interface Driver
      *
      * @return string
      */
-    public function getDriver();
+    public function getDriver(): string;
 
     /**
      * Get endpoint URL
      *
      * @return string
      */
-    public function getEndpoint();
+    public function getEndpoint(): string;
 
     /**
      * Send the SMS
@@ -24,5 +24,5 @@ interface Driver
      * @param array $message An array containing the message.
      * @return boolean
      */
-    public function sendRequest(array $message);
+    public function sendRequest(array $message): bool;
 }

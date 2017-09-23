@@ -53,7 +53,7 @@ class NullDriver implements Driver
      *
      * @return string
      */
-    public function getEndpoint()
+    public function getEndpoint(): string
     {
         return '';
     }

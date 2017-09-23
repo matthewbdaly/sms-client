@@ -71,7 +71,7 @@ class Nexmo implements Driver
      *
      * @return string
      */
-    public function getDriver()
+    public function getDriver(): string
     {
         return 'Nexmo';
     }
@@ -81,7 +81,7 @@ class Nexmo implements Driver
      *
      * @return string
      */
-    public function getEndpoint()
+    public function getEndpoint(): string
     {
         return $this->endpoint;
     }
