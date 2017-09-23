@@ -2,9 +2,9 @@
 
 namespace Matthewbdaly\SMS\Drivers;
 
-use Matthewbdaly\SMS\Contracts\Driver;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Matthewbdaly\SMS\Contracts\Driver;
 
 class NullDriver implements Driver
 {
@@ -25,7 +25,6 @@ class NullDriver implements Driver
 
     public function getEndpoint()
     {
-        return null;
     }
 
     public function sendRequest(array $message): bool
