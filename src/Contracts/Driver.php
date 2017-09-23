@@ -5,24 +5,25 @@ namespace Matthewbdaly\SMS\Contracts;
 interface Driver
 {
     /**
-     * Get driver name
+     * Get driver name.
      *
      * @return string
      */
     public function getDriver(): string;
 
     /**
-     * Get endpoint URL
+     * Get endpoint URL.
      *
      * @return string
      */
     public function getEndpoint(): string;
 
     /**
-     * Send the SMS
+     * Send the SMS.
      *
      * @param array $message An array containing the message.
-     * @return boolean
+     *
+     * @return bool
      */
     public function sendRequest(array $message): bool;
 }

@@ -11,51 +11,52 @@ use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Matthewbdaly\SMS\Contracts\Driver;
 
 /**
- * Driver for Nextmo
+ * Driver for Nextmo.
  */
 class Nexmo implements Driver
 {
     /**
-     * Guzzle client
+     * Guzzle client.
      *
-     * @var $client
+     * @var
      */
     protected $client;
 
     /**
-     * Guzzle response
+     * Guzzle response.
      *
-     * @var $response
+     * @var
      */
     protected $response;
 
     /**
-     * Endpoint
+     * Endpoint.
      *
-     * @var $endpoint
+     * @var
      */
     private $endpoint = 'https://rest.nexmo.com/sms/json';
 
     /**
-     * API Key
+     * API Key.
      *
-     * @var $apiKey
+     * @var
      */
     private $apiKey;
 
     /**
-     * API Secret
+     * API Secret.
      *
-     * @var $apiSecret
+     * @var
      */
     private $apiSecret;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param GuzzleClient   $client   The Guzzle Client instance.
      * @param GuzzleResponse $response The Guzzle response instance.
      * @param array          $config   The configuration array.
+     *
      * @return void
      */
     public function __construct(GuzzleClient $client, GuzzleResponse $response, array $config)
@@ -67,7 +68,7 @@ class Nexmo implements Driver
     }
 
     /**
-     * Get driver name
+     * Get driver name.
      *
      * @return string
      */
@@ -77,7 +78,7 @@ class Nexmo implements Driver
     }
 
     /**
-     * Get endpoint URL
+     * Get endpoint URL.
      *
      * @return string
      */
@@ -87,14 +88,16 @@ class Nexmo implements Driver
     }
 
     /**
-     * Send the SMS
+     * Send the SMS.
      *
      * @param array $message An array containing the message.
-     * @return boolean
-     * @throws \Matthewbdaly\SMS\Exceptions\ClientException Client exception.
-     * @throws \Matthewbdaly\SMS\Exceptions\ServerException Server exception.
+     *
+     * @throws \Matthewbdaly\SMS\Exceptions\ClientException  Client exception.
+     * @throws \Matthewbdaly\SMS\Exceptions\ServerException  Server exception.
      * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
+     *
+     * @return bool
      */
     public function sendRequest(array $message): bool
     {
