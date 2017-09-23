@@ -43,7 +43,7 @@ class Client
      *
      * @param array $msg The message array.
      *
-     * @return boolean
+     * @return bool
      */
     public function send(array $msg): bool
     {
