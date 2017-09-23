@@ -89,7 +89,7 @@ class Clockwork implements Driver
      * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
      *
-     * @return boolean
+     * @return bool
      */
     public function sendRequest(array $message): bool
     {
