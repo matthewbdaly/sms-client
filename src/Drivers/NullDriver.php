@@ -7,29 +7,30 @@ use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Matthewbdaly\SMS\Contracts\Driver;
 
 /**
- * Null driver for testing
+ * Null driver for testing.
  */
 class NullDriver implements Driver
 {
     /**
-     * Guzzle client
+     * Guzzle client.
      *
-     * @var $client
+     * @var
      */
     protected $client;
 
     /**
-     * Guzzle response
+     * Guzzle response.
      *
-     * @var $response
+     * @var
      */
     protected $response;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param GuzzleClient   $client   The Guzzle Client instance.
      * @param GuzzleResponse $response The Guzzle response instance.
+     *
      * @return void
      */
     public function __construct(GuzzleClient $client, GuzzleResponse $response)
@@ -39,7 +40,7 @@ class NullDriver implements Driver
     }
 
     /**
-     * Get driver name
+     * Get driver name.
      *
      * @return string
      */
@@ -49,7 +50,7 @@ class NullDriver implements Driver
     }
 
     /**
-     * Get endpoint URL
+     * Get endpoint URL.
      *
      * @return string
      */
@@ -59,10 +60,11 @@ class NullDriver implements Driver
     }
 
     /**
-     * Send the SMS
+     * Send the SMS.
      *
      * @param array $message An array containing the message.
-     * @return boolean
+     *
+     * @return bool
      */
     public function sendRequest(array $message): bool
     {

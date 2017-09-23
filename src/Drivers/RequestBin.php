@@ -11,45 +11,45 @@ use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Matthewbdaly\SMS\Contracts\Driver;
 
 /**
- * Driver for RequestBin
+ * Driver for RequestBin.
  */
 class RequestBin implements Driver
 {
-
     /**
-     * Guzzle client
+     * Guzzle client.
      *
-     * @var $client
+     * @var
      */
     protected $client;
 
     /**
-     * Guzzle response
+     * Guzzle response.
      *
-     * @var $response
+     * @var
      */
     protected $response;
 
     /**
-     * Path
+     * Path.
      *
-     * @var $path
+     * @var
      */
     private $path;
 
     /**
-     * Endpoint
+     * Endpoint.
      *
-     * @var $endpoint
+     * @var
      */
     private $endpoint = 'https://requestb.in/';
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param GuzzleClient   $client   The Guzzle Client instance.
      * @param GuzzleResponse $response The Guzzle response instance.
      * @param array          $config   The configuration array.
+     *
      * @return void
      */
     public function __construct(GuzzleClient $client, GuzzleResponse $response, array $config)
@@ -60,7 +60,7 @@ class RequestBin implements Driver
     }
 
     /**
-     * Get driver name
+     * Get driver name.
      *
      * @return string
      */
@@ -70,7 +70,7 @@ class RequestBin implements Driver
     }
 
     /**
-     * Get endpoint URL
+     * Get endpoint URL.
      *
      * @return string
      */
@@ -80,14 +80,16 @@ class RequestBin implements Driver
     }
 
     /**
-     * Send the request
+     * Send the request.
      *
      * @param array $message An array containing the message.
-     * @return boolean
-     * @throws \Matthewbdaly\SMS\Exceptions\ClientException Client exception.
-     * @throws \Matthewbdaly\SMS\Exceptions\ServerException Server exception.
+     *
+     * @throws \Matthewbdaly\SMS\Exceptions\ClientException  Client exception.
+     * @throws \Matthewbdaly\SMS\Exceptions\ServerException  Server exception.
      * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
+     *
+     * @return bool
      */
     public function sendRequest(array $message): bool
     {

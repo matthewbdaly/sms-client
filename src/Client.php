@@ -5,21 +5,22 @@ namespace Matthewbdaly\SMS;
 use Matthewbdaly\SMS\Contracts\Driver;
 
 /**
- * SMS client
+ * SMS client.
  */
 class Client
 {
     /**
-     * Driver to use
+     * Driver to use.
      *
-     * @var $driver
+     * @var
      */
     private $driver;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param Driver $driver The driver to use.
+     *
      * @return void
      */
     public function __construct(Driver $driver)
@@ -28,7 +29,7 @@ class Client
     }
 
     /**
-     * Get the driver name
+     * Get the driver name.
      *
      * @return string
      */
@@ -38,10 +39,11 @@ class Client
     }
 
     /**
-     * Send the message
+     * Send the message.
      *
      * @param array $msg The message array.
-     * @return boolean
+     *
+     * @return bool
      */
     public function send(array $msg): bool
     {
