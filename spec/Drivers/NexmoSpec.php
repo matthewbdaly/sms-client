@@ -14,13 +14,13 @@ class NexmoSpec extends ObjectBehavior
     public function let(GuzzleClient $client, GuzzleResponse $response)
     {
         $config = [
-            'api_key' => 'foo',
-            'api_secret' => 'bar'
+            'api_key'    => 'foo',
+            'api_secret' => 'bar',
         ];
         $this->beConstructedWith($client, $response, $config);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(Nexmo::class);
     }
@@ -55,7 +55,7 @@ class NexmoSpec extends ObjectBehavior
         $handler = HandlerStack::create($mock);
         $client = new GuzzleClient(['handler' => $handler]);
         $config = [
-            'api_key' => 'MY_DUMMY_API_KEY',
+            'api_key'    => 'MY_DUMMY_API_KEY',
             'api_secret' => 'MY_DUMMY_API_SECRET',
         ];
         $this->beConstructedWith($client, $response, $config);
