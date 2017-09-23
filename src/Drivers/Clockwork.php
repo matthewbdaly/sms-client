@@ -41,7 +41,7 @@ class Clockwork implements Driver
     {
         try {
             $message['key'] = $this->apiKey;
-            $response = $this->client->request('POST', $this->getEndpoint(), $message);
+            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($message));
         } catch (ClientException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ClientException();
         } catch (ServerException $e) {
