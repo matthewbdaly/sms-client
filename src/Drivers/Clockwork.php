@@ -39,6 +39,19 @@ class Clockwork implements Driver
 
     public function sendRequest(array $message): bool
     {
-        return true;
+        try {
+            $message['key'] = $this->apiKey;
+            $response = $this->client->request('POST', $this->getEndpoint(), $message);
+        } catch (ClientException $e) {
+            throw new \Matthewbdaly\SMS\Exceptions\ClientException();
+        } catch (ServerException $e) {
+            throw new \Matthewbdaly\SMS\Exceptions\ServerException();
+        } catch (ConnectException $e) {
+            throw new \Matthewbdaly\SMS\Exceptions\ConnectException();
+        } catch (RequestException $e) {
+            throw new \Matthewbdaly\SMS\Exceptions\NetworkException();
+        }
+
+        return $response->getStatusCode() == 201;
     }
 }

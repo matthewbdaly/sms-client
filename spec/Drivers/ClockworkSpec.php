@@ -39,12 +39,23 @@ class ClockworkSpec extends ObjectBehavior
         $this->getEndpoint()->shouldReturn('https://api.clockworksms.com/http/send.aspx');
     }
 
-    public function it_sends_the_request()
+    public function it_sends_the_request(GuzzleResponse $response)
     {
         $msg = [
             'to'      => '+44 01234 567890',
             'content' => 'Just testing',
         ];
+        $mock = new MockHandler(
+            [
+            new GuzzleResponse(201),
+            ]
+        );
+        $handler = HandlerStack::create($mock);
+        $client = new GuzzleClient(['handler' => $handler]);
+        $config = [
+            'api_key' => 'MY_DUMMY_API_KEY',
+        ];
+        $this->beConstructedWith($client, $response, $config);
         $this->sendRequest($msg)->shouldReturn(true);
     }
 }
