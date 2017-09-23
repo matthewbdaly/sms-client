@@ -64,7 +64,7 @@ class NullDriver implements Driver
      *
      * @param array $message An array containing the message.
      *
-     * @return bool
+     * @return boolean
      */
     public function sendRequest(array $message): bool
     {

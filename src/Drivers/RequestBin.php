@@ -89,7 +89,7 @@ class RequestBin implements Driver
      * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
      *
-     * @return bool
+     * @return boolean
      */
     public function sendRequest(array $message): bool
     {
