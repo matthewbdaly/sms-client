@@ -3,6 +3,7 @@
 namespace spec\Matthewbdaly\SMS\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\ClientInterface as GuzzleInterface;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Drivers\NullDriver;
@@ -10,7 +11,7 @@ use PhpSpec\ObjectBehavior;
 
 class NullDriverSpec extends ObjectBehavior
 {
-    public function let(GuzzleClient $client, ResponseInterface $response)
+    public function let(GuzzleInterface $client, ResponseInterface $response)
     {
         $this->beConstructedWith($client, $response);
     }

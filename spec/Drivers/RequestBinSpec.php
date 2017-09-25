@@ -3,6 +3,7 @@
 namespace spec\Matthewbdaly\SMS\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\ClientInterface as GuzzleInterface;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
@@ -12,7 +13,7 @@ use PhpSpec\ObjectBehavior;
 
 class RequestBinSpec extends ObjectBehavior
 {
-    public function let(GuzzleClient $client, ResponseInterface $response)
+    public function let(GuzzleInterface $client, ResponseInterface $response)
     {
         $config = [
             'path' => 'blah',
