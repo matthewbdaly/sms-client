@@ -46,9 +46,9 @@ class Clockwork implements Driver
     /**
      * Constructor.
      *
-     * @param GuzzleClient   $client   The Guzzle Client instance.
+     * @param GuzzleClient      $client   The Guzzle Client instance.
      * @param ResponseInterface $response The response instance.
-     * @param array          $config   The configuration array.
+     * @param array             $config   The configuration array.
      *
      * @return void
      */

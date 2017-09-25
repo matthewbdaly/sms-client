@@ -28,7 +28,7 @@ class NullDriver implements Driver
     /**
      * Constructor.
      *
-     * @param GuzzleClient   $client   The Guzzle Client instance.
+     * @param GuzzleClient      $client   The Guzzle Client instance.
      * @param ResponseInterface $response The response instance.
      *
      * @return void
