@@ -28,7 +28,7 @@ Example Usage
 
 ```php
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use GuzzleHttp\Psr7\Response;
 use Matthewbdaly\SMS\Drivers\Null;
 use Matthewbdaly\SMS\Client;
 
@@ -64,7 +64,7 @@ $client->send($msg);
 
 ```php
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use GuzzleHttp\Psr7\Response;
 use Matthewbdaly\SMS\Drivers\RequestBin;
 use Matthewbdaly\SMS\Client;
 
@@ -85,7 +85,7 @@ $client->send($msg);
 
 ```php
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use GuzzleHttp\Psr7\Response;
 use Matthewbdaly\SMS\Drivers\Clockwork;
 use Matthewbdaly\SMS\Client;
 
@@ -106,7 +106,7 @@ $client->send($msg);
 
 ```php
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use GuzzleHttp\Psr7\Response;
 use Matthewbdaly\SMS\Drivers\Nexmo;
 use Matthewbdaly\SMS\Client;
 
