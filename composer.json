@@ -4,7 +4,8 @@
     "type": "library",
     "keywords": ["sms"],
     "require": {
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "aws/aws-sdk-php": "^3.36"
     },
     "require-dev": {
         "psy/psysh": "^0.8.0",
