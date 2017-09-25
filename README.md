@@ -134,7 +134,7 @@ You can pass any configuration options required in the `config` array in the con
 
 If you've created a new driver, feel free to submit a pull request and I'll consider including it.
 
-Laravel integration
+Laravel and Lumen integration
 -------------------
 
-Using Laravel? You probably want to use [my integration package](https://packagist.org/packages/matthewbdaly/laravel-sms) rather than this one, since that includes a service provider, as well as the `SMS` facade and easier configuration.
+Using Laravel or Lumen? You probably want to use [my integration package](https://packagist.org/packages/matthewbdaly/laravel-sms) rather than this one, since that includes a service provider, as well as the `SMS` facade and easier configuration.
