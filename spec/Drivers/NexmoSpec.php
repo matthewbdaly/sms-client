@@ -6,12 +6,13 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Drivers\Nexmo;
 use PhpSpec\ObjectBehavior;
 
 class NexmoSpec extends ObjectBehavior
 {
-    public function let(GuzzleClient $client, GuzzleResponse $response)
+    public function let(GuzzleClient $client, ResponseInterface $response)
     {
         $config = [
             'api_key'    => 'foo',

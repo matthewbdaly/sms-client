@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Contracts\Driver;
 
 /**
@@ -54,12 +54,12 @@ class Nexmo implements Driver
      * Constructor.
      *
      * @param GuzzleClient   $client   The Guzzle Client instance.
-     * @param GuzzleResponse $response The Guzzle response instance.
+     * @param ResponseInterface $response The response instance.
      * @param array          $config   The configuration array.
      *
      * @return void
      */
-    public function __construct(GuzzleClient $client, GuzzleResponse $response, array $config)
+    public function __construct(GuzzleClient $client, ResponseInterface $response, array $config)
     {
         $this->client = $client;
         $this->response = $response;
