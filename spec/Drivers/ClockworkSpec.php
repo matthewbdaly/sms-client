@@ -40,7 +40,7 @@ class ClockworkSpec extends ObjectBehavior
         $this->getEndpoint()->shouldReturn('https://api.clockworksms.com/http/send.aspx');
     }
 
-    public function it_sends_the_request(GuzzleResponse $response)
+    public function it_sends_the_request(ResponseInterface $response)
     {
         $msg = [
             'to'      => '+44 01234 567890',
