@@ -37,7 +37,7 @@ class Aws implements Driver
      *
      * @var
      */
-     protected $sns;
+    protected $sns;
 
     /**
      * Constructor.
@@ -59,7 +59,6 @@ class Aws implements Driver
             'version' => 'latest'
         );
         $this->sns = new \Aws\Sns\SnsClient($params);
-
     }
 
     /**
@@ -88,15 +87,12 @@ class Aws implements Driver
      * @param array $message An array containing the message.
      *
      * @throws \Matthewbdaly\SMS\Exceptions\ClientException  Client exception.
-     * @throws \Matthewbdaly\SMS\Exceptions\ServerException  Server exception.
-     * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
-     * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
      *
      * @return boolean
      */
     public function sendRequest(array $message): bool
     {
-        try {                   
+        try {
             $args = array(
                 "SenderID" => $message['from'],
                 "SMSType" => "Transactional",
@@ -105,7 +101,6 @@ class Aws implements Driver
             );
             
             $result = $this->sns->publish($args);
-
         } catch (\Aws\Sns\Exception\SnsException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ClientException();
         }
