@@ -33,6 +33,17 @@ class AwsSpec extends ObjectBehavior
         $this->getEndpoint()->shouldReturn('');
     }
 
+    public function it_can_be_constructed_with_config_only()
+    {
+        $config = [
+            'api_key'    => 'foo',
+            'api_secret' => 'bar',
+            'api_region' => 'ap-southeast-2'
+        ];
+        $this->beConstructedWith(null, $config);
+        $this->getDriver()->shouldReturn('Aws');
+    }
+
     public function it_sends_the_request(SnsClient $sns)
     {
         $msg = [
