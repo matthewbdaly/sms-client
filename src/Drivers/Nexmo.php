@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Contracts\Driver;
 
 /**
- * Driver for Nextmo.
+ * Driver for Nexmo.
  */
 class Nexmo implements Driver
 {

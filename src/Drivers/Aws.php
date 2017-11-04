@@ -6,7 +6,7 @@ use Matthewbdaly\SMS\Contracts\Driver;
 use Aws\Sns\SnsClient;
 
 /**
- * Driver for Nextmo.
+ * Driver for AWS SNS.
  */
 class Aws implements Driver
 {
