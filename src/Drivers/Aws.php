@@ -5,6 +5,7 @@ namespace Matthewbdaly\SMS\Drivers;
 use GuzzleHttp\ClientInterface as GuzzleClient;
 use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Contracts\Driver;
+use Aws\Sns\SnsClient;
 
 /**
  * Driver for Nextmo.
@@ -58,7 +59,7 @@ class Aws implements Driver
             'region' => $config['api_region'],
             'version' => 'latest'
         );
-        $this->sns = new \Aws\Sns\SnsClient($params);
+        $this->sns = new SnsClient($params);
     }
 
     /**
