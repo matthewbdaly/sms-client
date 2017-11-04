@@ -46,6 +46,7 @@ class MailSpec extends ObjectBehavior
         $config = [
             'domain' => 'my.sms-gateway.com'
         ];
+        $mailer->send('+4401234567890@my.sms-gateway.com', 'Just testing')->shouldBeCalled();
         $this->beConstructedWith($mailer, $config);
         $this->sendRequest($msg)->shouldReturn(true);
     }
