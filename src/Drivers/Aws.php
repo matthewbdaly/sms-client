@@ -34,8 +34,8 @@ class Aws implements Driver
     /**
      * Constructor.
      *
-     * @param array             $config The configuration array.
-     * @param SnsClient|null    $sns    The Amazon SNS client.
+     * @param array          $config The configuration array.
+     * @param SnsClient|null $sns    The Amazon SNS client.
      *
      * @return void
      */
