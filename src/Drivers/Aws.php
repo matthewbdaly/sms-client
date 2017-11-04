@@ -2,8 +2,6 @@
 
 namespace Matthewbdaly\SMS\Drivers;
 
-use GuzzleHttp\ClientInterface as GuzzleClient;
-use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Contracts\Driver;
 use Aws\Sns\SnsClient;
 
@@ -12,13 +10,6 @@ use Aws\Sns\SnsClient;
  */
 class Aws implements Driver
 {
-    /**
-     * Guzzle client.
-     *
-     * @var
-     */
-    protected $client;
-
     /**
      * Guzzle response.
      *
@@ -43,23 +34,25 @@ class Aws implements Driver
     /**
      * Constructor.
      *
-     * @param GuzzleClient      $client   The Guzzle Client instance.
-     * @param ResponseInterface $response The response instance.
-     * @param array             $config   The configuration array.
+     * @param SnsClient         $sns   The Amazon SNS client.
+     * @param array|null        $config   The configuration array.
      *
      * @return void
      */
-    public function __construct(GuzzleClient $client, ResponseInterface $response, array $config)
+    public function __construct(SnsClient $sns = null, array $config = null)
     {
-        $params = array(
-            'credentials' => array(
-                'key' => $config['api_key'],
-                'secret' => $config['api_secret']
-            ),
-            'region' => $config['api_region'],
-            'version' => 'latest'
-        );
-        $this->sns = new SnsClient($params);
+        if (!$sns) {
+            $params = array(
+                'credentials' => array(
+                    'key' => $config['api_key'],
+                    'secret' => $config['api_secret']
+                ),
+                'region' => $config['api_region'],
+                'version' => 'latest'
+            );
+            $sns = new SnsClient($params);
+        }
+        $this->sns = $sns;
     }
 
     /**
@@ -100,7 +93,7 @@ class Aws implements Driver
                 "Message" => $message['content'],
                 "PhoneNumber" => $message['to']
             );
-            
+
             $result = $this->sns->publish($args);
         } catch (\Aws\Sns\Exception\SnsException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ClientException();

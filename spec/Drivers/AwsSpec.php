@@ -2,25 +2,15 @@
 
 namespace spec\Matthewbdaly\SMS\Drivers;
 
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\ClientInterface as GuzzleInterface;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
-use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Drivers\Aws;
 use PhpSpec\ObjectBehavior;
+use Aws\Sns\SnsClient;
 
 class AwsSpec extends ObjectBehavior
 {
-    public function let(GuzzleInterface $client, ResponseInterface $response)
+    public function let(SnsClient $sns)
     {
-        $config = [
-            'api_key'    => 'foo',
-            'api_secret' => 'bar',
-            'api_region' => 'ap-southeast-2'
-        ];
-        $this->beConstructedWith($client, $response, $config);
+        $this->beConstructedWith($sns);
     }
 
     public function it_is_initializable()
@@ -43,29 +33,14 @@ class AwsSpec extends ObjectBehavior
         $this->getEndpoint()->shouldReturn('');
     }
 
-    public function it_sends_the_request(ResponseInterface $response)
+    public function it_sends_the_request(SnsClient $sns)
     {
-   
-        /*
         $msg = [
             'to'      => '+44 01234 567890',
             'from'    => 'Tester',
             'content' => 'Just testing',
         ];
-        $mock = new MockHandler(
-            [
-            new GuzzleResponse(201),
-            ]
-        );
-        $handler = HandlerStack::create($mock);
-        $client = new GuzzleClient(['handler' => $handler]);
-        $config = [
-            'api_key'    => 'MY_DUMMY_API_KEY',
-            'api_secret' => 'MY_DUMMY_API_SECRET',
-            'api_region' => 'ap-southeast-2'
-        ];
-        $this->beConstructedWith($client, $response, $config);
+        $this->beConstructedWith($sns);
         $this->sendRequest($msg)->shouldReturn(true);
-        */
     }
 }
