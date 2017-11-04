@@ -34,12 +34,12 @@ class Aws implements Driver
     /**
      * Constructor.
      *
+     * @param array             $config The configuration array.
      * @param SnsClient|null    $sns    The Amazon SNS client.
-     * @param array|null        $config The configuration array.
      *
      * @return void
      */
-    public function __construct(SnsClient $sns = null, array $config = null)
+    public function __construct(array $config = [], SnsClient $sns = null)
     {
         if (!$sns) {
             $params = array(

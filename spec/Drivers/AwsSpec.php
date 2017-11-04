@@ -10,7 +10,7 @@ class AwsSpec extends ObjectBehavior
 {
     public function let(SnsClient $sns)
     {
-        $this->beConstructedWith($sns);
+        $this->beConstructedWith([], $sns);
     }
 
     public function it_is_initializable()
@@ -40,7 +40,7 @@ class AwsSpec extends ObjectBehavior
             'api_secret' => 'bar',
             'api_region' => 'ap-southeast-2'
         ];
-        $this->beConstructedWith(null, $config);
+        $this->beConstructedWith($config);
         $this->getDriver()->shouldReturn('Aws');
     }
 
@@ -59,7 +59,7 @@ class AwsSpec extends ObjectBehavior
         ];
 
         $sns->publish($args)->shouldBeCalled();
-        $this->beConstructedWith($sns);
+        $this->beConstructedWith([], $sns);
         $this->sendRequest($msg)->shouldReturn(true);
     }
 }
