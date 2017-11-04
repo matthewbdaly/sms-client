@@ -12,6 +12,7 @@ It currently ships with the following drivers:
 
 * Clockwork
 * Nexmo
+* AWS SNS (requires installation of `aws/aws-sdk-php`)
 
 In addition, it also has the following drivers for test purposes:
 
@@ -116,6 +117,27 @@ $driver = new Nexmo($guzzle, $resp, [
     'api_key' => 'MY_NEXMO_API_KEY',
     'api_secret' => 'MY_NEXMO_API_SECRET',
 ]);
+$client = new Client($driver);
+$msg = [
+    'to'      => '+44 01234 567890',
+    'from'    => 'Test User',
+    'content' => 'Just testing',
+];
+$client->send($msg);
+```
+
+**AWS SNS**
+
+```php
+use Matthewbdaly\SMS\Client;
+use Matthewbdaly\SMS\Drivers\Aws;
+
+$config = [
+    'api_key'    => 'foo',
+    'api_secret' => 'bar',
+    'api_region' => 'ap-southeast-2'
+];
+$driver = new Aws($config);
 $client = new Client($driver);
 $msg = [
     'to'      => '+44 01234 567890',
