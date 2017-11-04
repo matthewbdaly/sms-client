@@ -11,7 +11,10 @@ class MailSpec extends ObjectBehavior
 {
     public function let(Mailer $mailer)
     {
-        $this->beConstructedWith($mailer);
+        $config = [
+            'domain' => 'my.sms-gateway.com'
+        ];
+        $this->beConstructedWith($mailer, $config);
     }
 
     public function it_is_initializable()
@@ -29,9 +32,9 @@ class MailSpec extends ObjectBehavior
         $this->getDriver()->shouldReturn('Mail');
     }
 
-    public function it_returns_the_driver_endpoint()
+    public function it_returns_the_driver_endpoint(Mailer $mailer)
     {
-        $this->getEndpoint()->shouldReturn('');
+        $this->getEndpoint()->shouldReturn('my.sms-gateway.com');
     }
 
     public function it_sends_the_request(Mailer $mailer)
@@ -39,6 +42,9 @@ class MailSpec extends ObjectBehavior
         $msg = [
             'to'      => '+44 01234 567890',
             'content' => 'Just testing',
+        ];
+        $config = [
+            'domain' => 'my.sms-gateway.com'
         ];
         $this->beConstructedWith($mailer, $config);
         $this->sendRequest($msg)->shouldReturn(true);

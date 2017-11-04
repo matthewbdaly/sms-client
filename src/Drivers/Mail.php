@@ -7,9 +7,24 @@ use Matthewbdaly\SMS\Contracts\Driver;
 
 class Mail implements Driver
 {
-    public function __construct($argument1)
+    /**
+     * Mailer.
+     *
+     * @var
+     */
+    protected $mailer;
+
+    /**
+     * Endpoint.
+     *
+     * @var
+     */
+    protected $endpoint;
+
+    public function __construct(Mailer $mailer, array $config)
     {
-        // TODO: write logic here
+        $this->mailer = $mailer;
+        $this->endpoint = $config['domain'];
     }
 
     public function getDriver(): string
@@ -19,6 +34,18 @@ class Mail implements Driver
 
     public function getEndpoint(): string
     {
-        return '';
+        return $this->endpoint;
+    }
+
+    /**
+     * Send the SMS.
+     *
+     * @param array $message An array containing the message.
+     *
+     * @return boolean
+     */
+    public function sendRequest(array $message): bool
+    {
+        return true;
     }
 }
