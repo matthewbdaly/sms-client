@@ -40,6 +40,14 @@ class AwsSpec extends ObjectBehavior
             'from'    => 'Tester',
             'content' => 'Just testing',
         ];
+        $args = [
+            "SenderID" => $msg['from'],
+            "SMSType" => "Transactional",
+            "Message" => $msg['content'],
+            "PhoneNumber" => $msg['to']
+        ];
+
+        $sns->publish($args)->shouldBeCalled();
         $this->beConstructedWith($sns);
         $this->sendRequest($msg)->shouldReturn(true);
     }
