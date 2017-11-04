@@ -46,8 +46,12 @@ class Mail implements Driver
      */
     public function sendRequest(array $message): bool
     {
-        $recipient = preg_replace('/\s+/', '', $message['to']) . "@" . $this->endpoint;
-        $this->mailer->send($recipient, $message['content']);
-        return true;
+        try {
+            $recipient = preg_replace('/\s+/', '', $message['to']) . "@" . $this->endpoint;
+            $this->mailer->send($recipient, $message['content']);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
