@@ -101,4 +101,44 @@ class RequestBinSpec extends ObjectBehavior
         $this->beConstructedWith($client, $response, $config);
         $this->shouldThrow('Matthewbdaly\SMS\Exceptions\ServerException')->during('sendRequest', [$msg]);
     }
+
+    public function it_throws_an_error_for_request_exception(ResponseInterface $response)
+    {
+        $msg = [
+            'to'      => '+44 01234 567890',
+            'content' => 'Just testing',
+        ];
+        $mock = new MockHandler(
+            [
+            new \GuzzleHttp\Exception\RequestException("", new Request('POST', 'test'))
+            ]
+        );
+        $handler = HandlerStack::create($mock);
+        $client = new GuzzleClient(['handler' => $handler]);
+        $config = [
+            'path' => 'blah',
+        ];
+        $this->beConstructedWith($client, $response, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\RequestException')->during('sendRequest', [$msg]);
+    }
+
+    public function it_throws_an_error_for_connect_exception(ResponseInterface $response)
+    {
+        $msg = [
+            'to'      => '+44 01234 567890',
+            'content' => 'Just testing',
+        ];
+        $mock = new MockHandler(
+            [
+            new \GuzzleHttp\Exception\ConnectException("", new Request('POST', 'test'))
+            ]
+        );
+        $handler = HandlerStack::create($mock);
+        $client = new GuzzleClient(['handler' => $handler]);
+        $config = [
+            'path' => 'blah',
+        ];
+        $this->beConstructedWith($client, $response, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\ConnectException')->during('sendRequest', [$msg]);
+    }
 }

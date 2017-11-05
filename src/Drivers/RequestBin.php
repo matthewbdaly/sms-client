@@ -102,7 +102,7 @@ class RequestBin implements Driver
         } catch (ConnectException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ConnectException();
         } catch (RequestException $e) {
-            throw new \Matthewbdaly\SMS\Exceptions\NetworkException();
+            throw new \Matthewbdaly\SMS\Exceptions\RequestException();
         }
 
         return $response->getStatusCode() == 201;
