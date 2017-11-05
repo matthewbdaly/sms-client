@@ -94,7 +94,7 @@ class Nexmo implements Driver
      *
      * @throws \Matthewbdaly\SMS\Exceptions\ClientException  Client exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ServerException  Server exception.
-     * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
+     * @throws \Matthewbdaly\SMS\Exceptions\RequestException Request exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
      *
      * @return boolean
@@ -114,7 +114,7 @@ class Nexmo implements Driver
         } catch (ConnectException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ConnectException();
         } catch (RequestException $e) {
-            throw new \Matthewbdaly\SMS\Exceptions\NetworkException();
+            throw new \Matthewbdaly\SMS\Exceptions\RequestException();
         }
 
         return $response->getStatusCode() == 201;

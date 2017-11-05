@@ -86,7 +86,7 @@ class RequestBin implements Driver
      *
      * @throws \Matthewbdaly\SMS\Exceptions\ClientException  Client exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ServerException  Server exception.
-     * @throws \Matthewbdaly\SMS\Exceptions\NetworkException Network exception.
+     * @throws \Matthewbdaly\SMS\Exceptions\RequestException Request exception.
      * @throws \Matthewbdaly\SMS\Exceptions\ConnectException Connect exception.
      *
      * @return boolean
