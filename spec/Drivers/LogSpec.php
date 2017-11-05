@@ -42,6 +42,6 @@ class LogSpec extends ObjectBehavior
         ];
         $this->beConstructedWith($logger);
         $this->sendRequest($msg)->shouldReturn(true);
-        $logger->info($msg)->shouldHaveBeenCalled();
+        $logger->info('Message sent', $msg)->shouldHaveBeenCalled();
     }
 }

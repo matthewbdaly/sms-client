@@ -56,7 +56,7 @@ class Log implements Driver
      */
     public function sendRequest(array $message): bool
     {
-        $this->logger->info($message);
+        $this->logger->info('Message sent', $message);
         return true;
     }
 }
