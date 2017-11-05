@@ -5,6 +5,9 @@ namespace Matthewbdaly\SMS\Drivers;
 use Matthewbdaly\SMS\Contracts\Mailer;
 use Matthewbdaly\SMS\Contracts\Driver;
 
+/**
+ * Generic mail driver
+ */
 class Mail implements Driver
 {
     /**
@@ -21,17 +24,35 @@ class Mail implements Driver
      */
     protected $endpoint;
 
+    /**
+     * Constructor.
+     *
+     * @param Mailer $mailer The Mailer instance.
+     * @param array  $config The configuration.
+     *
+     * @return void
+     */
     public function __construct(Mailer $mailer, array $config)
     {
         $this->mailer = $mailer;
         $this->endpoint = $config['domain'];
     }
 
+    /**
+     * Get driver name.
+     *
+     * @return string
+     */
     public function getDriver(): string
     {
         return 'Mail';
     }
 
+    /**
+     * Get endpoint domain.
+     *
+     * @return string
+     */
     public function getEndpoint(): string
     {
         return $this->endpoint;
