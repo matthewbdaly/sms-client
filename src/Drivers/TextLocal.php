@@ -56,7 +56,7 @@ class TextLocal implements Driver
     {
         $this->client = $client;
         $this->response = $response;
-        $this->apiKey = $config['apikey'];
+        $this->apiKey = $config['api_key'];
     }
 
     /**

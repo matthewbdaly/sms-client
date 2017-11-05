@@ -16,7 +16,7 @@ class TextLocalSpec extends ObjectBehavior
     public function let(GuzzleInterface $client, ResponseInterface $response)
     {
         $config = [
-            'apikey' => 'blah',
+            'api_key' => 'blah',
         ];
         $this->beConstructedWith($client, $response, $config);
     }
@@ -56,7 +56,7 @@ class TextLocalSpec extends ObjectBehavior
         $handler = HandlerStack::create($mock);
         $client = new GuzzleClient(['handler' => $handler]);
         $config = [
-            'apikey' => 'MY_DUMMY_API_KEY',
+            'api_key' => 'MY_DUMMY_API_KEY',
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->sendRequest($msg)->shouldReturn(true);
