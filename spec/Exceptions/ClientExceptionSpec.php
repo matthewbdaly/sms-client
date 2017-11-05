@@ -12,4 +12,9 @@ class ClientExceptionSpec extends ObjectBehavior
     {
         $this->shouldHaveType(ClientException::class);
     }
+
+    function it_is_an_exception()
+    {
+        $this->shouldHaveType(\Exception::class);
+    }
 }

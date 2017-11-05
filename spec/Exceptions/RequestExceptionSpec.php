@@ -12,4 +12,9 @@ class RequestExceptionSpec extends ObjectBehavior
     {
         $this->shouldHaveType(RequestException::class);
     }
+
+    function it_is_an_exception()
+    {
+        $this->shouldHaveType(\Exception::class);
+    }
 }

@@ -12,4 +12,9 @@ class ServerExceptionSpec extends ObjectBehavior
     {
         $this->shouldHaveType(ServerException::class);
     }
+
+    function it_is_an_exception()
+    {
+        $this->shouldHaveType(\Exception::class);
+    }
 }
