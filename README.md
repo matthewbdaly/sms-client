@@ -13,6 +13,7 @@ It currently ships with the following drivers:
 * Clockwork
 * Nexmo
 * AWS SNS (requires installation of `aws/aws-sdk-php`)
+* Mail (for mail-to-SMS gateways)
 
 In addition, it also has the following drivers for test purposes:
 
@@ -147,6 +148,26 @@ $msg = [
 $client->send($msg);
 ```
 
+**Mail**
+
+```php
+use Matthewbdaly\SMS\Client;
+use Matthewbdaly\SMS\Drivers\Mail;
+use Matthewbdaly\SMS\Contracts\Mailer;
+
+$config = [
+    'domain' => 'my.sms-gateway.com'
+];
+$driver = new Mail($config);
+$client = new Client($driver);
+$msg = [
+    'to'      => '+44 01234 567890',
+    'from'    => 'Test User',
+    'content' => 'Just testing',
+];
+$client->send($msg);
+```
+
 Creating your own driver
 ------------------------
 
@@ -155,6 +176,8 @@ It's easy to create your own driver - just implement the `Matthewbdaly\SMS\Contr
 You can pass any configuration options required in the `config` array in the constructor of the driver. Please ensure that your driver has tests using PHPSpec (see the existing drivers for examples), and that it meets the coding standard (the package includes a PHP Codesniffer configuration for that reason).
 
 If you've created a new driver, feel free to submit a pull request and I'll consider including it.
+
+Mail driver
 
 Laravel and Lumen integration
 -------------------
