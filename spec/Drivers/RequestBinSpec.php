@@ -6,6 +6,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Drivers\RequestBin;
@@ -59,5 +60,25 @@ class RequestBinSpec extends ObjectBehavior
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->sendRequest($msg)->shouldReturn(true);
+    }
+
+    public function it_throws_an_error_for_400(ResponseInterface $response)
+    {
+        $msg = [
+            'to'      => '+44 01234 567890',
+            'content' => 'Just testing',
+        ];
+        $mock = new MockHandler(
+            [
+            new \GuzzleHttp\Exception\ClientException("", new Request('POST', 'test'))
+            ]
+        );
+        $handler = HandlerStack::create($mock);
+        $client = new GuzzleClient(['handler' => $handler]);
+        $config = [
+            'path' => 'blah',
+        ];
+        $this->beConstructedWith($client, $response, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\ClientException')->during('sendRequest', [$msg]);
     }
 }
