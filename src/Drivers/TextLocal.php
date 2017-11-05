@@ -56,7 +56,7 @@ class TextLocal implements Driver
     {
         $this->client = $client;
         $this->response = $response;
-        $this->apiKey = $config['api_key'];
+        $this->apiKey = $config['apikey'];
     }
 
     /**
@@ -94,8 +94,12 @@ class TextLocal implements Driver
     public function sendRequest(array $message): bool
     {
         try {
-            $message['key'] = $this->apiKey;
-            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($message));
+            $cleanMessage = [];
+            $cleanMessage['apikey'] = urlencode($this->apiKey);
+            $cleanMessage['numbers'] = preg_replace('/[^0-9]/', '', $message['to']);
+            $cleanMessage['sender'] = urlencode($message['from']);
+            $cleanMessage['message'] = rawurlencode($message['content']);
+            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($cleanMessage));
         } catch (ClientException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ClientException();
         } catch (ServerException $e) {
