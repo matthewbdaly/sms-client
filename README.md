@@ -162,7 +162,6 @@ $driver = new Mail($config);
 $client = new Client($driver);
 $msg = [
     'to'      => '+44 01234 567890',
-    'from'    => 'Test User',
     'content' => 'Just testing',
 ];
 $client->send($msg);
