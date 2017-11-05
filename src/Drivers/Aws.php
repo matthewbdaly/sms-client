@@ -94,7 +94,7 @@ class Aws implements Driver
                 "PhoneNumber" => $message['to']
             );
 
-            $result = $this->sns->publish($args);
+            $this->sns->publish($args);
         } catch (\Aws\Sns\Exception\SnsException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ClientException();
         }
