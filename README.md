@@ -171,13 +171,20 @@ $client->send($msg);
 Creating your own driver
 ------------------------
 
-It's easy to create your own driver - just implement the `Matthewbdaly\SMS\Contracts\Driver` interface. You can use whatever method is most appropriate for sending the SMS - for instance, if your provider has a mail-to-SMS gateway, you can happily use Swiftmailer, or if they have a REST API you can use Guzzle.
+It's easy to create your own driver - just implement the `Matthewbdaly\SMS\Contracts\Driver` interface. You can use whatever method is most appropriate for sending the SMS - for instance, if your provider has a mail-to-SMS gateway, you can happily use Swiftmailer or PHPMailer in your driver to send emails, or if they have a REST API you can use Guzzle.
 
 You can pass any configuration options required in the `config` array in the constructor of the driver. Please ensure that your driver has tests using PHPSpec (see the existing drivers for examples), and that it meets the coding standard (the package includes a PHP Codesniffer configuration for that reason).
 
 If you've created a new driver, feel free to submit a pull request and I'll consider including it.
 
 Mail driver
+-----------
+
+I have implemented a mail driver at `Matthewbdaly\SMS\Drivers\Mail`, but it's very basic and may not work with a lot of mail-to-SMS gateways out of the box. It accepts an instance of the `Matthewbdaly\SMS\Contracts\Mailer` interface as the first argument, and the config array as the second.
+
+I've included the class `Matthewbdaly\SMS\PHPMailAdapter` in the library as a very basic implementation of the mailer interface, but it's deliberately very basic - it's just a very thin wrapper around the PHP `mail()` function. You will almost certainly want to create your own implementation for your own use case - for instance, if you're using Laravel you might create a wrapper class for the `Mail` facade.
+
+The mail driver will nearly always be slower and less reliable than the HTTP-based ones, so if you have to integrate with a provider that doesn't yet have a driver, but does have a REST API, you're probably better off creating an API driver for it. If you do need to work with a mail-to-SMS gateway, you're quite likely to find that you need to extend `Matthewbdaly\SMS\Drivers\Mail` to amend the functionality.
 
 Laravel and Lumen integration
 -------------------
