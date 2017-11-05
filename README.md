@@ -12,6 +12,7 @@ It currently ships with the following drivers:
 
 * Clockwork
 * Nexmo
+* TextLocal
 * AWS SNS (requires installation of `aws/aws-sdk-php`)
 * Mail (for mail-to-SMS gateways)
 
@@ -162,6 +163,28 @@ $driver = new Mail($config);
 $client = new Client($driver);
 $msg = [
     'to'      => '+44 01234 567890',
+    'content' => 'Just testing',
+];
+$client->send($msg);
+```
+
+**TextLocal**
+
+```php
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Response;
+use Matthewbdaly\SMS\Drivers\TextLocal;
+use Matthewbdaly\SMS\Client;
+
+$guzzle = new GuzzleClient;
+$resp = new Response;
+$driver = new TextLocal($guzzle, $resp, [
+    'api_key' => 'MY_TEXTLOCAL_API_KEY',
+]);
+$client = new Client($driver);
+$msg = [
+    'to'      => '+44 01234 567890',
+    'from'    => 'Test User',
     'content' => 'Just testing',
 ];
 $client->send($msg);
