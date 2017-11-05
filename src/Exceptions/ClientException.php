@@ -1,6 +1,6 @@
 <?php
 
-namespace Matthewbdaly\SMS\Exceptions
+namespace Matthewbdaly\SMS\Exceptions;
 
 class ClientException extends \Exception
 {
