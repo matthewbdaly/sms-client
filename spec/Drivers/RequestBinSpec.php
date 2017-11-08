@@ -32,6 +32,14 @@ class RequestBinSpec extends ObjectBehavior
         $this->shouldImplement('Matthewbdaly\SMS\Contracts\Driver');
     }
 
+    public function it_throws_exception_if_misconfigured(GuzzleInterface $client, ResponseInterface $response)
+    {
+        $config = [
+        ];
+        $this->beConstructedWith($client, $response, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException')->during('__construct', [$client, $response, $config]);
+    }
+
     public function it_returns_the_driver_name()
     {
         $this->getDriver()->shouldReturn('RequestBin');

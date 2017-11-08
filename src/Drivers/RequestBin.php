@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Contracts\Driver;
+use Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException;
 
 /**
  * Driver for RequestBin.
@@ -56,6 +57,9 @@ class RequestBin implements Driver
     {
         $this->client = $client;
         $this->response = $response;
+        if (! array_key_exists('path', $config)) {
+            throw new DriverNotConfiguredException();
+        }
         $this->path = $config['path'];
     }
 
