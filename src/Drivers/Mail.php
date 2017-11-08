@@ -4,6 +4,7 @@ namespace Matthewbdaly\SMS\Drivers;
 
 use Matthewbdaly\SMS\Contracts\Mailer;
 use Matthewbdaly\SMS\Contracts\Driver;
+use Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException;
 
 /**
  * Generic mail driver
@@ -35,6 +36,9 @@ class Mail implements Driver
     public function __construct(Mailer $mailer, array $config)
     {
         $this->mailer = $mailer;
+        if (! array_key_exists('domain', $config)) {
+            throw new DriverNotConfiguredException();
+        }
         $this->endpoint = $config['domain'];
     }
 

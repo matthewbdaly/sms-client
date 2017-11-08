@@ -22,6 +22,14 @@ class MailSpec extends ObjectBehavior
         $this->shouldHaveType(Mail::class);
     }
 
+    public function it_throws_exception_if_misconfigured(Mailer $mailer)
+    {
+        $config = [
+        ];
+        $this->beConstructedWith($mailer, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException')->during('__construct', [$mailer, $config]);
+    }
+
     public function it_implements_interface()
     {
         $this->shouldImplement('Matthewbdaly\SMS\Contracts\Driver');
