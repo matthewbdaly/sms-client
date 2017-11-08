@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Contracts\Driver;
+use Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException;
 
 /**
  * Driver for Nexmo.
@@ -63,6 +64,9 @@ class Nexmo implements Driver
     {
         $this->client = $client;
         $this->response = $response;
+        if (! array_key_exists('api_key', $config) || ! array_key_exists('api_secret', $config)) {
+            throw new DriverNotConfiguredException();
+        }
         $this->apiKey = $config['api_key'];
         $this->apiSecret = $config['api_secret'];
     }

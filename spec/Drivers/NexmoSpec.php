@@ -33,6 +33,24 @@ class NexmoSpec extends ObjectBehavior
         $this->shouldImplement('Matthewbdaly\SMS\Contracts\Driver');
     }
 
+    public function it_throws_exception_if_no_api_key(GuzzleInterface $client, ResponseInterface $response)
+    {
+        $config = [
+            'api_secret' => 'bar',
+        ];
+        $this->beConstructedWith($client, $response, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException')->during('__construct', [$client, $response, $config]);
+    }
+
+    public function it_throws_exception_if_no_api_secret(GuzzleInterface $client, ResponseInterface $response)
+    {
+        $config = [
+            'api_key'    => 'foo',
+        ];
+        $this->beConstructedWith($client, $response, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException')->during('__construct', [$client, $response, $config]);
+    }
+
     public function it_returns_the_driver_name()
     {
         $this->getDriver()->shouldReturn('Nexmo');
