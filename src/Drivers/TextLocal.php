@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use Psr\Http\Message\ResponseInterface;
 use Matthewbdaly\SMS\Contracts\Driver;
+use Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException;
 
 /**
  * Driver for TextLocal
@@ -56,6 +57,9 @@ class TextLocal implements Driver
     {
         $this->client = $client;
         $this->response = $response;
+        if (! array_key_exists('api_key', $config)) {
+            throw new DriverNotConfiguredException();
+        }
         $this->apiKey = $config['api_key'];
     }
 
