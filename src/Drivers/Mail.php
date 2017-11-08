@@ -30,6 +30,7 @@ class Mail implements Driver
      *
      * @param Mailer $mailer The Mailer instance.
      * @param array  $config The configuration.
+     * @throws DriverNotConfiguredException Driver not configured correctly.
      *
      * @return void
      */

@@ -50,6 +50,7 @@ class Clockwork implements Driver
      * @param GuzzleClient      $client   The Guzzle Client instance.
      * @param ResponseInterface $response The response instance.
      * @param array             $config   The configuration array.
+     * @throws DriverNotConfiguredException Driver not configured correctly.
      *
      * @return void
      */
