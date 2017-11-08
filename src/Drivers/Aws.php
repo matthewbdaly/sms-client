@@ -4,6 +4,7 @@ namespace Matthewbdaly\SMS\Drivers;
 
 use Matthewbdaly\SMS\Contracts\Driver;
 use Aws\Sns\SnsClient;
+use Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException;
 
 /**
  * Driver for AWS SNS.
@@ -42,6 +43,9 @@ class Aws implements Driver
     public function __construct(array $config = [], SnsClient $sns = null)
     {
         if (!$sns) {
+            if (! array_key_exists('api_key', $config) || ! array_key_exists('api_secret', $config) || ! array_key_exists('api_region', $config)) {
+                throw new DriverNotConfiguredException();
+            }
             $params = array(
                 'credentials' => array(
                     'key' => $config['api_key'],

@@ -23,6 +23,14 @@ class AwsSpec extends ObjectBehavior
         $this->shouldImplement('Matthewbdaly\SMS\Contracts\Driver');
     }
 
+    public function it_throws_exception_if_misconfigured()
+    {
+        $config = [
+        ];
+        $this->beConstructedWith($config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException')->during('__construct', [$config]);
+    }
+
     public function it_returns_the_driver_name()
     {
         $this->getDriver()->shouldReturn('Aws');
