@@ -58,7 +58,7 @@ class TwilioSpec extends ObjectBehavior
 
     public function it_returns_the_driver_endpoint()
     {
-        $this->getEndpoint()->shouldReturn('https://api.clockworksms.com/http/send.aspx');
+        $this->getEndpoint()->shouldReturn('https://api.twilio.com/2010-04-01/Accounts/MY_TWILIO_ACCOUNT_ID/Messages.json');
     }
 
     public function it_sends_the_request(ResponseInterface $response)
