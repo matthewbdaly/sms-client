@@ -214,15 +214,6 @@ $msg = [
 $client->send($msg);
 ```
 
-Creating your own driver
-------------------------
-
-It's easy to create your own driver - just implement the `Matthewbdaly\SMS\Contracts\Driver` interface. You can use whatever method is most appropriate for sending the SMS - for instance, if your provider has a mail-to-SMS gateway, you can happily use Swiftmailer or PHPMailer in your driver to send emails, or if they have a REST API you can use Guzzle.
-
-You can pass any configuration options required in the `config` array in the constructor of the driver. Please ensure that your driver has tests using PHPSpec (see the existing drivers for examples), and that it meets the coding standard (the package includes a PHP Codesniffer configuration for that reason).
-
-If you've created a new driver, feel free to submit a pull request and I'll consider including it.
-
 Mail driver
 -----------
 
@@ -236,3 +227,18 @@ Laravel and Lumen integration
 -------------------
 
 Using Laravel or Lumen? You probably want to use [my integration package](https://packagist.org/packages/matthewbdaly/laravel-sms) rather than this one, since that includes a service provider, as well as the `SMS` facade and easier configuration.
+
+Creating your own driver
+------------------------
+
+It's easy to create your own driver - just implement the `Matthewbdaly\SMS\Contracts\Driver` interface. You can use whatever method is most appropriate for sending the SMS - for instance, if your provider has a mail-to-SMS gateway, you can happily use Swiftmailer or PHPMailer in your driver to send emails, or if they have a REST API you can use Guzzle.
+
+You can pass any configuration options required in the `config` array in the constructor of the driver. Please ensure that your driver has tests using PHPSpec (see the existing drivers for examples), and that it meets the coding standard (the package includes a PHP Codesniffer configuration for that reason).
+
+If you've created a new driver, feel free to submit a pull request and I'll consider including it.
+
+TODO
+----
+
+* More drivers! If you're using an SMS provider that isn't on the list and you'd like to see support for it in this library, go ahead and create your own driver and submit a pull request for it.
+* Remove dependency on Guzzle and replace it with a more generic HTTP adapter
