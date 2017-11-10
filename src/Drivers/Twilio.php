@@ -101,9 +101,9 @@ class Twilio implements Driver
     {
         try {
             $cleanMessage = [];
-            $cleanMessage['To'] = urlencode($message['to']);
-            $cleanMessage['From'] = urlencode($message['from']);
-            $cleanMessage['Body'] = rawurlencode($message['content']);
+            $cleanMessage['To'] = $message['to'];
+            $cleanMessage['From'] = $message['from'];
+            $cleanMessage['Body'] = $message['content'];
             $response = $this->client->request('POST', $this->getEndpoint(), [
                 'form_params' => $cleanMessage,
                 'auth' => [
