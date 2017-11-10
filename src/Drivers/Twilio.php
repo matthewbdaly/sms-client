@@ -104,7 +104,7 @@ class Twilio implements Driver
             $cleanMessage['To'] = urlencode($message['to']);
             $cleanMessage['From'] = urlencode($message['from']);
             $cleanMessage['Body'] = rawurlencode($message['content']);
-            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($message), [
+            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($cleanMessage), [
                 'auth' => [
                     $this->accountId,
                     $this->apiToken
