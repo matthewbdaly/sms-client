@@ -38,11 +38,18 @@ class Twilio implements Driver
     private $endpoint = 'https://api.clockworksms.com/http/send.aspx';
 
     /**
-     * API Key.
+     * Account ID.
      *
      * @var
      */
-    private $apiKey;
+    private $accoundId;
+
+    /**
+     * API Token.
+     *
+     * @var
+     */
+    private $apiToken;
 
     /**
      * Constructor.
@@ -58,10 +65,11 @@ class Twilio implements Driver
     {
         $this->client = $client;
         $this->response = $response;
-        if (! array_key_exists('api_key', $config)) {
+        if (! array_key_exists('account_id', $config) || ! array_key_exists('api_token', $config)) {
             throw new DriverNotConfiguredException();
         }
-        $this->apiKey = $config['api_key'];
+        $this->accoundId = $config['account_id'];
+        $this->apiToken = $config['api_token'];
     }
 
     /**

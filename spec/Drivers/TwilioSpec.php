@@ -17,7 +17,8 @@ class TwilioSpec extends ObjectBehavior
     public function let(GuzzleInterface $client, ResponseInterface $response)
     {
         $config = [
-            'api_key' => 'blah',
+            'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+            'api_token' => 'MY_TWILIO_API_TOKEN',
         ];
         $this->beConstructedWith($client, $response, $config);
     }
@@ -32,9 +33,19 @@ class TwilioSpec extends ObjectBehavior
         $this->shouldImplement('Matthewbdaly\SMS\Contracts\Driver');
     }
 
-    public function it_throws_exception_if_misconfigured(GuzzleInterface $client, ResponseInterface $response)
+    public function it_throws_exception_if_account_name_not_configured(GuzzleInterface $client, ResponseInterface $response)
     {
         $config = [
+            'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+        ];
+        $this->beConstructedWith($client, $response, $config);
+        $this->shouldThrow('Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException')->during('__construct', [$client, $response, $config]);
+    }
+
+    public function it_throws_exception_if_api_token_not_configured(GuzzleInterface $client, ResponseInterface $response)
+    {
+        $config = [
+            'api_token' => 'MY_TWILIO_API_TOKEN',
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->shouldThrow('Matthewbdaly\SMS\Exceptions\DriverNotConfiguredException')->during('__construct', [$client, $response, $config]);
@@ -64,7 +75,8 @@ class TwilioSpec extends ObjectBehavior
         $handler = HandlerStack::create($mock);
         $client = new GuzzleClient(['handler' => $handler]);
         $config = [
-            'api_key' => 'MY_DUMMY_API_KEY',
+            'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+            'api_token' => 'MY_TWILIO_API_TOKEN',
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->sendRequest($msg)->shouldReturn(true);
@@ -84,7 +96,8 @@ class TwilioSpec extends ObjectBehavior
         $handler = HandlerStack::create($mock);
         $client = new GuzzleClient(['handler' => $handler]);
         $config = [
-            'api_key'    => 'MY_DUMMY_API_KEY',
+            'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+            'api_token' => 'MY_TWILIO_API_TOKEN',
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->shouldThrow('Matthewbdaly\SMS\Exceptions\ClientException')->during('sendRequest', [$msg]);
@@ -104,7 +117,8 @@ class TwilioSpec extends ObjectBehavior
         $handler = HandlerStack::create($mock);
         $client = new GuzzleClient(['handler' => $handler]);
         $config = [
-            'api_key'    => 'MY_DUMMY_API_KEY',
+            'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+            'api_token' => 'MY_TWILIO_API_TOKEN',
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->shouldThrow('Matthewbdaly\SMS\Exceptions\ServerException')->during('sendRequest', [$msg]);
@@ -124,7 +138,8 @@ class TwilioSpec extends ObjectBehavior
         $handler = HandlerStack::create($mock);
         $client = new GuzzleClient(['handler' => $handler]);
         $config = [
-            'api_key'    => 'MY_DUMMY_API_KEY',
+            'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+            'api_token' => 'MY_TWILIO_API_TOKEN',
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->shouldThrow('Matthewbdaly\SMS\Exceptions\RequestException')->during('sendRequest', [$msg]);
@@ -144,7 +159,8 @@ class TwilioSpec extends ObjectBehavior
         $handler = HandlerStack::create($mock);
         $client = new GuzzleClient(['handler' => $handler]);
         $config = [
-            'api_key'    => 'MY_DUMMY_API_KEY',
+            'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+            'api_token' => 'MY_TWILIO_API_TOKEN',
         ];
         $this->beConstructedWith($client, $response, $config);
         $this->shouldThrow('Matthewbdaly\SMS\Exceptions\ConnectException')->during('sendRequest', [$msg]);
