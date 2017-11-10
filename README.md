@@ -13,6 +13,7 @@ It currently ships with the following drivers:
 * Clockwork
 * Nexmo
 * TextLocal
+* Twilio
 * AWS SNS (requires installation of `aws/aws-sdk-php`)
 * Mail (for mail-to-SMS gateways)
 
@@ -185,6 +186,29 @@ $client = new Client($driver);
 $msg = [
     'to'      => '+44 01234 567890',
     'from'    => 'Test User',
+    'content' => 'Just testing',
+];
+$client->send($msg);
+```
+
+**Twilio**
+
+```php
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Response;
+use Matthewbdaly\SMS\Drivers\Twilio;
+use Matthewbdaly\SMS\Client;
+
+$guzzle = new GuzzleClient;
+$resp = new Response;
+$driver = new Twilio($guzzle, $resp, [
+    'account_id' => 'MY_TWILIO_ACCOUNT_ID',
+    'api_token' => 'MY_TWILIO_API_TOKEN',
+]);
+$client = new Client($driver);
+$msg = [
+    'to'      => '+44 01234 567890',
+    'from'      => '+44 01234 567890',
     'content' => 'Just testing',
 ];
 $client->send($msg);
