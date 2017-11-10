@@ -100,7 +100,15 @@ class Twilio implements Driver
     public function sendRequest(array $message): bool
     {
         try {
-            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($message));
+            $cleanMessage = [];
+            $cleanMessage['To'] = urlencode($message['to']);
+            $cleanMessage['From'] = urlencode($message['from']);
+            $cleanMessage['Body'] = rawurlencode($message['content']);
+            $response = $this->client->request('POST', $this->getEndpoint().'?'.http_build_query($message), [
+                'auth' => [
+                    $this->accountId,
+                    $this->apiToken
+                ]]);
         } catch (ClientException $e) {
             throw new \Matthewbdaly\SMS\Exceptions\ClientException();
         } catch (ServerException $e) {

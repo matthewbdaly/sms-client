@@ -65,6 +65,7 @@ class TwilioSpec extends ObjectBehavior
     {
         $msg = [
             'to'      => '+44 01234 567890',
+            'from'    => '+44 01234 567890',
             'content' => 'Just testing',
         ];
         $mock = new MockHandler(
