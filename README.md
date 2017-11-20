@@ -240,5 +240,8 @@ If you've created a new driver, feel free to submit a pull request and I'll cons
 TODO
 ----
 
+I have plans for a 2.0 release which include:
+
 * More drivers! If you're using an SMS provider that isn't on the list and you'd like to see support for it in this library, go ahead and create your own driver and submit a pull request for it.
-* Remove dependency on Guzzle and replace it with a more generic HTTP adapter
+* Remove dependency on Guzzle and replace it with HTTPlug so it doesn't need a specific implementation.
+* Add a factory for resolving the drivers automatically.
