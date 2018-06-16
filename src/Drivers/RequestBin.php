@@ -111,6 +111,6 @@ class RequestBin implements Driver
             throw new \Matthewbdaly\SMS\Exceptions\RequestException();
         }
 
-        return $response->getStatusCode() == 201;
+        return true;
     }
 }

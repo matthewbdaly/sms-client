@@ -112,6 +112,6 @@ class Clockwork implements Driver
             throw new \Matthewbdaly\SMS\Exceptions\RequestException();
         }
 
-        return $response->getStatusCode() == 201;
+        return true;
     }
 }
