@@ -16,6 +16,7 @@ It currently ships with the following drivers:
 * Twilio
 * AWS SNS (requires installation of `aws/aws-sdk-php`)
 * Mail (for mail-to-SMS gateways)
+* O2SK (O2 Slovakia)
 
 In addition, it also has the following drivers for test purposes:
 
@@ -210,6 +211,27 @@ $msg = [
     'to'      => '+44 01234 567890',
     'from'      => '+44 01234 567890',
     'content' => 'Just testing',
+];
+$client->send($msg);
+```
+
+**O2SK**
+
+```php
+use GuzzleHttp\Client as GuzzleClient;
+use Matthewbdaly\SMS\Drivers\O2SK;
+use Matthewbdaly\SMS\Client;
+
+$driver = new O2SK(new GuzzleClient, [
+    'apiKey' => 'MY_O2SK_API_KEY',
+]);
+$client = new Client($driver);
+$msg = [
+    'message' => 'Testing message',
+    'sender' => ['text' => 'Tester'],
+    'recipients' => [
+        ['phonenr' => '+421911000000']
+    ]
 ];
 $client->send($msg);
 ```
