@@ -94,7 +94,12 @@ class Aws implements Driver
     {
         try {
             $args = array(
-                "SenderID" => $message['from'],
+                'MessageAttributes' => [
+                    'AWS.SNS.SMS.SenderID' => [
+                           'DataType' => 'String',
+                           'StringValue' => $message['from']
+                    ]
+                 ],
                 "SMSType" => "Transactional",
                 "Message" => $message['content'],
                 "PhoneNumber" => $message['to']
