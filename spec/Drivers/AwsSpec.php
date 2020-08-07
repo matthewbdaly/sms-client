@@ -60,7 +60,12 @@ class AwsSpec extends ObjectBehavior
             'content' => 'Just testing',
         ];
         $args = [
-            "SenderID" => $msg['from'],
+            'MessageAttributes' => [
+                'AWS.SNS.SMS.SenderID' => [
+                       'DataType' => 'String',
+                       'StringValue' => $msg['from']
+                ]
+             ],
             "SMSType" => "Transactional",
             "Message" => $msg['content'],
             "PhoneNumber" => $msg['to']
